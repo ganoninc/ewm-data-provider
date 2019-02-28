@@ -1,0 +1,16 @@
+{
+    "name": "ganoninc/ewmdataprovider",
+    "description": "provide data to Emoji Weather Map using a third party API. This provider uses a cache to avoid useless API calls.",
+    "type": "project",
+    "require": {
+        "cmfcmf/openweathermap-php-api": "^2.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Romain Giovanetti",
+            "email": "rgiovanetti@outlook.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
