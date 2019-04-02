@@ -27,14 +27,17 @@ def getAutorizedCoordinates():
     for template in os.listdir("./emojis-weather-map/public/templates"):
         with open("./emojis-weather-map/public/templates/"+template) as jsonFile:
             data = json.load(jsonFile)
-            autorizedCoordinates.append(
-                getAutorizedCoordinatesFromTemplateData(data))
+            autorizedCoordinates += getAutorizedCoordinatesFromTemplateData(data)
     return autorizedCoordinates
 
 
 def exportAutorizedCoordinatesAsJson(autorizedCoordinates):
+    keysOfAutorizedCoordinates = []
+    for autorizedCoordinatesElt in autorizedCoordinates:
+        keysOfAutorizedCoordinates.append(
+            str(autorizedCoordinatesElt["latitude"]) + str(autorizedCoordinatesElt["longitude"]))
     with open("./autorizedCoordinates.json", "w") as output:
-        json.dump(autorizedCoordinates, output)
+        json.dump(keysOfAutorizedCoordinates, output)
 
 
 def cleanWorkspace():
