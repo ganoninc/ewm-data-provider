@@ -5,13 +5,10 @@ use Cmfcmf\OpenWeatherMap\Exception as OWMException;
 // Must point to composer's autoload file.
 require 'vendor/autoload.php';
 
-//echo $_SERVER['HTTP_ORIGIN'];
-//if($_SERVER['HTTP_ORIGIN'] == "http://localhost") {
-
 require_once 'Cache.php';
 
 // Load parameters
-$parameter_array = parse_ini_file("parameter.ini", true);
+$parameter_array = parse_ini_file('parameter.ini', true);
 $openWeatherMapAPIKey = $parameter_array['open_weather_map']['key'];
 
 // Language of data (try your own language here!):
@@ -30,11 +27,17 @@ $cache->setTempPath(__DIR__.'/temps');
 $owm = new OpenWeatherMap($openWeatherMapAPIKey, null, $cache, 3600);
 
 try {
-    $weather = $owm->getWeather('Paris', $units, $lang);
+    $latitude = $_GET['latitude'];
+    $longitude = $_GET['longitude'];
+    if(empty($latitude) && empty($longitude)) {
+        echo 'Missing or wrong parameter. Please provide a correct latitude and longitude.';
+    } else {
+        $weather = $owm->getWeather(array('lat' => floatval($latitude), 'lon' => floatval($longitude)), $units, $lang);
+        var_dump($weather);
+    }
 } catch(OWMException $e) {
     echo 'OpenWeatherMap exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').';
 } catch(\Exception $e) {
     echo 'General exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').';
 }
 
-echo $weather->temperature;
