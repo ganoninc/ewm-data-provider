@@ -36,7 +36,8 @@ try {
         $key = $latitude.$longitude;
         if(AccessController::getInstance()->isAuthorized($key)) {
             $weather = $owm->getWeather(array('lat' => floatval($latitude), 'lon' => floatval($longitude)), $units, $lang);
-            var_dump($weather);
+            //var_dump($weather);
+            echo $weather->weather->icon;
         } else {
             echo 'These coordinates are not authorized.';
         }
