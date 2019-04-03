@@ -36,7 +36,7 @@ def exportAutorizedCoordinatesAsJson(autorizedCoordinates):
     for autorizedCoordinatesElt in autorizedCoordinates:
         keysOfAutorizedCoordinates.append(
             str(autorizedCoordinatesElt["latitude"]) + str(autorizedCoordinatesElt["longitude"]))
-    with open("./autorizedCoordinates.json", "w") as output:
+    with open("./authorizedCoordinatesKeys.json", "w") as output:
         json.dump(keysOfAutorizedCoordinates, output)
 
 

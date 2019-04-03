@@ -9,7 +9,7 @@ class AccessController
   
     private function __construct()
     {
-        $authorizedCoordinatesKeysJsonFile = file_get_contents("autorizedCoordinates.json");
+        $authorizedCoordinatesKeysJsonFile = file_get_contents("authorizedCoordinatesKeys.json");
         $authorizedCoordinatesKeys = json_decode($authorizedCoordinatesKeysJsonFile, true);
     }
  
