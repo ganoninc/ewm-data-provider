@@ -30,12 +30,17 @@ $owm = new OpenWeatherMap($openWeatherMapAPIKey, null, $cache, 3600);
 try {
     $latitude = $_GET['latitude'];
     $longitude = $_GET['longitude'];
-    AccessController::getInstance();
     if(empty($latitude) && empty($longitude)) {
-        echo 'Missing or wrong parameter. Please provide a correct latitude and longitude.';
+        echo 'Missing or wrong parameter. Please provide correct coordinates.';
     } else {
-        $weather = $owm->getWeather(array('lat' => floatval($latitude), 'lon' => floatval($longitude)), $units, $lang);
-        var_dump($weather);
+        $key = $latitude.$longitude;
+        if(AccessController::getInstance()->isAuthorized($key)) {
+            $weather = $owm->getWeather(array('lat' => floatval($latitude), 'lon' => floatval($longitude)), $units, $lang);
+            var_dump($weather);
+        } else {
+            echo 'These coordinates are not authorized.';
+        }
+
     }
 } catch(OWMException $e) {
     echo 'OpenWeatherMap exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').';

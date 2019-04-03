@@ -10,7 +10,7 @@ class AccessController
     private function __construct()
     {
         $authorizedCoordinatesKeysJsonFile = file_get_contents("authorizedCoordinatesKeys.json");
-        $authorizedCoordinatesKeys = json_decode($authorizedCoordinatesKeysJsonFile, true);
+        $this->authorizedCoordinatesKeys = json_decode($authorizedCoordinatesKeysJsonFile, true);
     }
  
     public static function getInstance()
@@ -21,5 +21,10 @@ class AccessController
         }
 
         return self::$instance;
+    }
+
+    public function isAuthorized($key)
+    {
+        return in_array($key, $this->authorizedCoordinatesKeys);
     }
 }
