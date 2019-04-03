@@ -6,6 +6,7 @@ use Cmfcmf\OpenWeatherMap\Exception as OWMException;
 require 'vendor/autoload.php';
 
 require_once 'Cache.php';
+require_once 'AccessController.php';
 
 // Load parameters
 $parameter_array = parse_ini_file('parameter.ini', true);
@@ -29,6 +30,7 @@ $owm = new OpenWeatherMap($openWeatherMapAPIKey, null, $cache, 3600);
 try {
     $latitude = $_GET['latitude'];
     $longitude = $_GET['longitude'];
+    AccessController::getInstance();
     if(empty($latitude) && empty($longitude)) {
         echo 'Missing or wrong parameter. Please provide a correct latitude and longitude.';
     } else {
