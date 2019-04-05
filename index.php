@@ -8,6 +8,8 @@ require 'vendor/autoload.php';
 require_once 'Cache.php';
 require_once 'AccessController.php';
 
+header("Access-Control-Allow-Origin: *");
+
 // Load parameters
 $parameter_array = parse_ini_file('parameter.ini', true);
 $openWeatherMapAPIKey = $parameter_array['open_weather_map']['key'];
