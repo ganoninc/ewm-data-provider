@@ -3,7 +3,7 @@
     "description": "provide data to Emoji Weather Map using a third party API. This provider uses a cache to avoid useless API calls.",
     "type": "project",
     "require": {
-        "cmfcmf/openweathermap-php-api": "^2.4"
+        "cmfcmf/openweathermap-php-api": "^3.1"
     },
     "license": "MIT",
     "authors": [
